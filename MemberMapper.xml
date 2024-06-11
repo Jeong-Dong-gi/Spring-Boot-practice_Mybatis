@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="com.testboard2.mapper.MemberMapper">
+
+	<insert id="insertMember" parameterType="MemberDTO">
+	<!-- INSERT INTO member (name, id, phone) VALUES ('이순신', 'mr.soon', '010-111-2222');  -->
+	INSERT INTO member (
+		  name
+		, id
+		, phone
+	) VALUES (
+		  #{name}
+		, #{id}
+		, #{phone}
+	);
+	</insert>
+
+</mapper>
