@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Member Registration Form</title>
+		<style>
+			form > label {
+				display: inline-block;
+				width:120px;
+			}
+			form > input {
+				padding: 4px;
+				margin-bottom: 4px;
+			}
+		</style>
+	</head>
+	<body>
+	
+	<h1>Member <span th:text="${formTitle}">Registration</span> Form</h1>
+	
+	<form action="#" th:action="@{/member/memberWriteOk}" th:object="${memberDTO}" method="POST">
+	
+		<label for="name">Name</label>
+		<input type="text" id="name" name="name" th:field="*{name}">
+		<br>
+		
+		<label for="id">ID</label>
+		<input type="text" id="id" name="id" th:field="*{id}">
+		<br>
+		
+		<label for="phone">Phone</label>
+		<input type="text" id="phone" name="phone" th:field="*{phone}">
+		<br>
+		<br>
+		
+		<input type="submit" value=" submit "> <input type="reset" value=" Reset ">
+			
+	</form>
+	
+	</body>
+</html>
