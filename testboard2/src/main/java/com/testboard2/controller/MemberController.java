@@ -50,7 +50,10 @@ public class MemberController {
 				// HttpServletResponse response () throws Exception {...
 				
 				// 3번 방식 : 특정 페이지(Error Message Page)로 데이터 값들을(Model을 사용) 보내서 출력
+				model.addAttribute("msg", "회원 정보가 없습니다. 메인 페이지로 이동합니다.");
+				model.addAttribute("url", "/");
 				
+				return "/member/errorMessage"; // errorMessage.html
 				
 			}
 			
