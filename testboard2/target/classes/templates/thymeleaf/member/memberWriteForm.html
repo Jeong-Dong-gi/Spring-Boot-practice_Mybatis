@@ -35,13 +35,17 @@
 		
 		<!-- if .. unless 구문 사용 -->
 		<span th:if="${formTitle} == 'Modification'" th:text="${formTitle}"></span>
-		<span th:unless="${formTitle} == 'Modification'" th:text="${formTItle}"></span>
+		<span th:unless="${formTitle} == 'Modification'" th:text="${formTitle}"></span>
 		
 	Form</h1>	
 	
 	
 	
-	<form action="#" th:action="@{/member/memberWriteOk}" th:object="${memberDTO}" method="POST">
+	<form 
+		th:object="${memberDTO}"
+		th:action="${formTitle != 'Registration' ? '/member/memberUdateOk' : '/member/memberWriteOk'}"
+		method="POST"
+		id="memberWriteForm">
 	
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" th:field="*{name}">
@@ -56,9 +60,36 @@
 		<br>
 		<br>
 		
-		<input type="submit" value=" submit "> <input type="reset" value=" Reset ">
-			
+		<!-- input type="submit" value=" submit "> <input type="reset" value=" Reset " -->
+		<!-- 
+			설명:
+			form 태그안에 button 태그로 버튼을 만드는 경우와 바깥쪽에 만드는 경우 주의사항?
+				1. 폼 태그 안쪽에 만드는 경우 .. type='submit' 지정만 해주면 됨.
+				2. 폼 태그 바깥에 만드는 경우 .. 폼 요소에 id 지정 후 버튼 태그에 해당 id를 명시해준다. 안해주면 클릭이 안됨
+		-->
+		<!-- button type="submit">회원등록<button -->
 	</form>
+	
+	<!-- 1번 방식 : 다중 if 구문 사용 -->
+	<!-- 
+	<button type="submit" form="memberWriteForm" th:if="${formTitle} == 'Registration'">회원등록</button>
+	<button type="submit" form="memberWriteForm" th:if="${formTitle} == 'Modification'">회원수정</button>
+	<button type="submit" form="memberWriteForm" th:if="${formTitle} == 'Deletion'">회원삭제</button>
+	-->
+	
+	<!-- 2번 방식 : if .. else 구문과 같은 효과는? if .. unless 구문 사용 -->
+	<!-- 한가지 주의할점은 if조건과 unless 조건을 동일하게 명시해야 함 -->
+	<!-- 
+	<button type="submit" form="memberWriteForm" th:if="${formTitle} == 'Registration'">등록</button>
+	<button type="submit" form="memberWriteForm" th:unless="${formTitle} == 'Registration'">수정</button>
+	-->
+	
+	<!-- 3번 방식 : if .. else if 구문과 같은 효과는? switch 구문 사용 -->
+	<div th:switch="${formTitle}">
+		<button type="submit" form="memberWriteForm" th:case="Registration">회원등록</button>
+		<button type="submit" form="memberWriteForm" th:case="Modification">회원수정</button>
+		<button type="submit" form="memberWriteForm" th:case="Deletion">회원삭제</button>
+	</div>
 	
 	</body>
 </html>
