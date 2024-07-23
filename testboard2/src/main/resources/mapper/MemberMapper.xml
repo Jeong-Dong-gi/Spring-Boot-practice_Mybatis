@@ -18,7 +18,27 @@
 	</insert>
 	
 	<select id="selectMemberOne" parameterType="int" resultType="MemberDTO">
-		SELECT * FROM member WHERE num = #{num};
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				member 
+			WHERE
+				num = #{num};
+		]]>
 	</select>
+	
+	<update id="updateMember" parameterType="MemberDTO">
+		<![CDATA[
+			UPDATE
+				member
+			SET
+				  name	= #{name}
+				, id	= #{id}
+				, phone	= #{phone}
+			WHERE
+				num = #{num};
+		]]>
+	</update>
 
 </mapper>

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.testboard2.dto.MemberDTO;
 import com.testboard2.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class MemberController {
 	
@@ -65,6 +67,7 @@ public class MemberController {
 			// Form 페이지로 m1 객체를 전달 --> 모델(model)
 			model.addAttribute("memberDTO", m1);
 			model.addAttribute("formTitle", "Modification");
+			model.addAttribute("num", num);
 			
 		}
 		else {
@@ -105,5 +108,37 @@ public class MemberController {
 		 * 		1. 별 차이는 없다.
 		 * 		2. 다만 redirect 경우는 다시 한번 해당 URL로 HTTP 요청을 넣는 형태.
 		 */
+	}
+	
+	/*
+	 *  회원 수정 Ok
+	 *  
+	 */
+	@PostMapping("member/memberUpdateOk")
+	public String updateMember(
+			MemberDTO m1,
+			HttpServletRequest request,
+			Model model
+			) {
+		
+		// 넘어오는 num 값 받아서 정수형으로 형 변환 --> getParameter() 반환이 String 이므로
+		String num_ = request.getParameter("num");
+		int num = Integer.parseInt(num_);
+		
+		try {
+			// 수정 처리
+			System.out.println(m1.getName());
+			System.out.println(m1.getId());
+			System.out.println(m1.getPhone());
+			
+			memberService.updateMember( m1 );
+			
+		}
+		catch (Exception e) {
+			// err
+			
+		}
+		
+		return "redirect:/member/memberWriteForm?num=" + num;
 	}
 }

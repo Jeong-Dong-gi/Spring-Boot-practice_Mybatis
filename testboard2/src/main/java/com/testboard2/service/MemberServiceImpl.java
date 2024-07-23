@@ -31,4 +31,13 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	/*
+	 * UPDATE
+	 */
+	@Override
+	public void updateMember( MemberDTO memberDTO) {
+		
+		memberMapper.updateMember(memberDTO);
+	}
+	
 }
