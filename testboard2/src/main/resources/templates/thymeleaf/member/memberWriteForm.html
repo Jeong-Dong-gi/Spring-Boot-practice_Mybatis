@@ -46,7 +46,7 @@
 		th:action="${formTitle != 'Registration' ? '/member/memberUpdateOk' : '/member/memberWriteOk'}"
 		method="POST"
 		id="memberWriteForm">
-		<input type="hidden" name="num" th:value="${num}">
+		<input type="hidden" name="num" th:if="${formTitle} == 'Modification'" th:value="${num}">
 	
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" th:field="*{name}">

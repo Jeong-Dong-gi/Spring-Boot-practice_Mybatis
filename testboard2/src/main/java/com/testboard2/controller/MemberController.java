@@ -55,7 +55,7 @@ public class MemberController {
 				model.addAttribute("msg", "회원 정보가 없습니다. 메인 페이지로 이동합니다.");
 				model.addAttribute("url", "/");
 				
-				return "/member/errorMessage"; // errorMessage.html
+				return "/member/messageAlert"; // errorMessage.html
 				
 			}
 			
@@ -86,7 +86,10 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/memberWriteOk")
-	public String insertMember(MemberDTO m1) {
+	public String insertMember(
+			MemberDTO m1,
+			Model model
+			) {
 
 		try {
 			// 등록 처리
@@ -95,6 +98,12 @@ public class MemberController {
 			System.out.println(m1.getPhone());
 			
 			memberService.insertMember( m1 );
+			
+			// 등록 안내 메시지 출력
+			model.addAttribute("msg", "회원 등록이 처리되었습니다. 메인 페이지로 이동합니다." );
+			model.addAttribute("url", "/");
+			
+			return "/member/messageAlert";
 			
 		}
 		catch (Exception e) {
@@ -132,6 +141,14 @@ public class MemberController {
 			System.out.println(m1.getPhone());
 			
 			memberService.updateMember( m1 );
+			
+			
+			// 안내 메시지 및 URL 정보를 전달 --> messageAlert.html
+			// 3번 방식 : 특정 페이지로 데이터 값들을(Model을 사용) 보내서 출력
+			model.addAttribute("msg", "회원 정보가 수정되었습니다. 확인 페이지로 이동합니다.");
+			model.addAttribute("url", "/member/memberWriteForm?num=" + num);
+			
+			return "/member/messageAlert";
 			
 		}
 		catch (Exception e) {
