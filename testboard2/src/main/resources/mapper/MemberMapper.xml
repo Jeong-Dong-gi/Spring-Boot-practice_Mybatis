@@ -40,5 +40,24 @@
 				num = #{num};
 		]]>
 	</update>
+	
+	<select id="selectMemberAll" resultType="MemberDTO">
+	<![CDATA[
+			SELECT
+				*
+			FROM
+				member;
+		]]>
+	</select>
+
+	<delete id="deleteMemberOne" parameterType="int">
+	<![CDATA[
+			DELETE FROM
+				member
+			WHERE
+				num = #{num};
+		]]>
+	</delete>
+
 
 </mapper>

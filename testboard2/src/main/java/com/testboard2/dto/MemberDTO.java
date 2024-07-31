@@ -32,6 +32,12 @@ public class MemberDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	// toString()
+	@Override
+	public String toString() {
+		return "MemberDTO [num=" + num + ", name=" + name + ", id=" + id + ", phone=" + phone + "]";
+	}
 
 	
 	

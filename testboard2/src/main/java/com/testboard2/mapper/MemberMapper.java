@@ -1,5 +1,7 @@
 package com.testboard2.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.testboard2.dto.MemberDTO;
@@ -12,4 +14,8 @@ public interface MemberMapper {
 	public MemberDTO selectMemberOne(int num);
 	
 	public void updateMember(MemberDTO memberDTO);
+	
+	public List<MemberDTO> selectMemberAll();
+	
+	public int deleteMemberOne(int num);
 }

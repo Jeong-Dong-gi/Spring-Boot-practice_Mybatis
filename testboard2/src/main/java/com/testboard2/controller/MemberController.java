@@ -1,6 +1,9 @@
 package com.testboard2.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,7 @@ public class MemberController {
 	/*
 	 * 회원 등록 Form 페이지 + 회원 수정 Form
 	 */
-	@GetMapping("/member/memberWriteForm")
+	@GetMapping("/member/memberWriteFormNew")
 	public String memberWriteForm(
 			@RequestParam(value="num", required=false) Integer num,
 			Model model) {
@@ -81,7 +84,7 @@ public class MemberController {
 			model.addAttribute("formTitle", "Registration");
 		}
 		
-		return "member/memberWriteForm";
+		return "member/memberWriteFormNew";
 		
 	}
 	
@@ -146,7 +149,7 @@ public class MemberController {
 			// 안내 메시지 및 URL 정보를 전달 --> messageAlert.html
 			// 3번 방식 : 특정 페이지로 데이터 값들을(Model을 사용) 보내서 출력
 			model.addAttribute("msg", "회원 정보가 수정되었습니다. 확인 페이지로 이동합니다.");
-			model.addAttribute("url", "/member/memberWriteForm?num=" + num);
+			model.addAttribute("url", "/member/memberWriteFormNew?num=" + num);
 			
 			return "/member/messageAlert";
 			
@@ -156,6 +159,76 @@ public class MemberController {
 			
 		}
 		
-		return "redirect:/member/memberWriteForm?num=" + num;
+		return "redirect:/member/memberWriteFormNew?num=" + num;
+	}
+	
+	/*
+	 * 회원 리스트
+	 */
+	@GetMapping("/member/memberList")
+	public String memberList(Model model) {
+		
+		List<MemberDTO> memberList = memberService.getMemberList();
+		
+		System.out.println(memberList.get(0).toString());
+		
+		// 객체 리스트 전달 - 모델에 담아서 리스트 페이지로 전달
+		model.addAttribute("memberList", memberList);
+		
+		return "/member/memberList";
+	}
+	
+	/*
+	 * 회원 삭제 Ok
+	 * 		1. Controller 삭제 구현. (삭제 요청에 대한 매핑 처리, num 변수 처리, 응답 메시지 처리 및 이동 url 전달 처리 등)
+	 * 		2. 삭제 시 num 값이 null 인지 아닌지 체크. (null이면 redirect)
+	 * 		3. 여러 에러 상황을 대비하여 try .. catch ~ 구문 사용.
+	 * 		4. 삭제 처리 후 반환값을 리턴 받아서 --> 게시글 삭제 성공 시 전달할 메시지와 실패 시의 메시지를 각각 전달할 수 있도록 처리.
+	 * 		5. 삭제 처리 후 반환값? row의 개수.
+	 */
+	@GetMapping("/member/memberDeleteOk")
+	public String memberDeleteOk( @RequestParam(value="num", required=false) Integer num, Model model) {
+		
+		// null 체크
+		if(num == null) {
+			System.out.println("null 입니다.");
+			return "redirect:/member/memberList";
+		}
+		System.out.println(num);
+		
+		// try .. catch ~
+		try {			
+			// 삭제에 대한 DB 처리
+			// 삭제 처리 후 --> 반환값 리턴
+			int isOk = memberService.deleteMember(num);
+			
+			// 멤버 삭제 실패 시 처리 구현(메시지 등을 전달)
+			if(isOk != 1) {
+				System.out.println("삭제 실패 = " + isOk);
+				// return "redirect:/member/memberList";
+				
+				// 삭제 실패 시 --> 안내 메시지 및 이동 url 정보를 전달 --> messageAlert.html
+				model.addAttribute("msg", "회원 삭제가 실패되었습니다. 리스트로 이동합니다.");
+				model.addAttribute("url", "/member/memberList");
+			}
+			else {
+				System.out.println("삭제 성공 = " + isOk);
+				
+				// 삭제 성공 시 --> 안내 메시지 및 이동 url 정보를 전달 --> messageAlert.html
+				model.addAttribute("msg", "회원 정보가 삭제되었습니다. 멤버 리스트 페이지로 이동합니다.");
+				model.addAttribute("url", "/member/memberList");
+			}
+			
+		}
+		catch(DataAccessException e) {
+			// DB 문제 발생
+		}
+		catch(Exception e) {
+			
+		}
+		
+		
+		
+		return "/member/messageAlert";
 	}
 }

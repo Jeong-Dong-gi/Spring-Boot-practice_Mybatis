@@ -1,5 +1,7 @@
 package com.testboard2.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.testboard2.dto.MemberDTO;
@@ -12,4 +14,8 @@ public interface MemberService {
 	public MemberDTO getMemberOne(int num);
 	
 	public void updateMember(MemberDTO memberDTO);
+	
+	public List<MemberDTO> getMemberList();
+	
+	public int deleteMember(int num);
 }

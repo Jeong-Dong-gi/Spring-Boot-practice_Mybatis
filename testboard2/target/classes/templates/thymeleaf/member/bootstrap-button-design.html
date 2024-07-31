@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bootstrap Button Design</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<style>
+	#btn-span {
+		/*width:120px;*/
+		padding:0 20px;
+		height:50px;
+		display:table-cell;
+		border:1px solid red !important;
+		text-align:center;
+		vertical-align:middle;
+		cursor: pointer;
+	}
+	#btn-span:hover {
+		background:red;
+		color:white;
+	}
+	
+</style>
+<body>
+
+	<div class="container mt-5">
+		
+		<h2>Rectangle Button</h2>
+		<button class="btn btn-primary rounded-0 mt-2">Member Join</button>
+		
+		<h2 class="mt-5">Rectangle Outline Button</h2>
+		<button class="btn btn-outline-warning rounded-0 mt-2">←BACK</button>
+		<button class="btn btn-outline-info rounded-0 mt-2">MEMBER UDATE</button>
+		<button class="btn btn-outline-danger rounded-0 mt-2">MEMBER DELETE</button>
+		
+		<h2 class="mt-5 mb-3">Rectangle Button</h2>
+		<span id="btn-span" class="border">SPAN BUTTON</span>
+				
+		<h2 class="mt-5 mb-3">Div(Card) Box</h2>
+		<div class="card card-body rounded-0 border-info">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+			Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+			when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+		</div>
+		
+	</div>
+</body>
+</html>

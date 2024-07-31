@@ -1,5 +1,7 @@
 package com.testboard2.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +42,22 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.updateMember(memberDTO);
 	}
 	
+	/*
+	 * SELECT MEMBER ALL
+	 */
+	@Override
+	public List<MemberDTO> getMemberList() {
+		
+		return memberMapper.selectMemberAll();
+	}
+	
+	/*
+	 * DELETE MEMBER ONE
+	 */
+	@Override
+	public int deleteMember(int num) {
+		
+		return memberMapper.deleteMemberOne(num);
+		
+	}
 }
