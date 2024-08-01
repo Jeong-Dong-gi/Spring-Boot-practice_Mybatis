@@ -36,7 +36,7 @@
 			<caption>List of members</caption>
 			<thead class="thead-dark">
 				<tr>
-					<th>Num</th>
+					<th width=100>#</th>
 					<th>Name</th>
 					<th>ID</th>
 					<th>Phone</th>
@@ -46,7 +46,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="row:${memberList}">
-					<td th:text="${row.num}"></td>
+					<th th:text="${row.num}"></th>
 					<td th:text="${row.name}"></td>
 					<td th:text="${row.id}"></td>
 					<td th:text="${row.phone}"></td>

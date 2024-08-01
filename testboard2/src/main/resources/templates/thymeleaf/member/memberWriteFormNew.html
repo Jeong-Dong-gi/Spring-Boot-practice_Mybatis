@@ -35,7 +35,14 @@
 			
 			<div class="form-group">
 				<label for="phone">Phone</label>
-				<input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}" placeholder="Enter Phone number --> (sample) 010-123-4567" minlength="3" maxlength="12" required>
+				<input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}" placeholder="Enter Phone number --> (sample) 010-123-4567" minlength="3" maxlength="12" required autocomplete="off">
+				<!-- 
+					설명: autocomplete
+						form 요소에서 자동 완성 기능을 사용할지 말지를 on / off로 결정
+						on으로 명시 시 사용자가 입력했었던 값들에 기초하여 입력 값과 유사한 값들을 드랍다운 형식으로 출력.
+				
+				 -->
+			
 			</div>
 			
 			<!-- button type="submit" class="btn btn-primary">Submit</button>  -->

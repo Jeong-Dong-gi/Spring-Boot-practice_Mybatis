@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="tpl_head(title)">
+		<!-- Required meta tags -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+		
+		<!-- <title th:text="${title}">tpl_fragments</title>  -->
+		<title>[[${title}]]</title>
+		
+		<style>
+			a:link 		{text-decoration: none; color: white}
+			a:visited	{text-decoration: none; color: black}
+			a:hover 	{text-decoration: none; color: red}
+			a:active	{text-decoration: none; color: red}
+		</style>
+		
+	</head>
+	<body>
+
+		<header th:fragment="tpl_header" class="bg-primary text-center pt-5 pb-5 text-white">
+			HEADER
+			<a href="/main" class="pl-5">main</a>
+			<a href="/sub" class="pl-3">sub</a>
+		</header>
+
+		<div class="container mt-5 mb-5">
+			<h2>Welcome</h2>		
+		</div>
+
+		<footer th:fragment="tpl_footer" class="bg-secondary text-center pt-5 pb-5 text-white">
+			FOOTER
+		</footer>
+
+		<!-- jQuery and Bootstrap Bundle (with Popper) -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
+
+
+<!-- 
+	설명:
+	1. Required meta tags
+		- 메타 태그는 항상 <head> 태그안에 정의.
+		- 기본적으로 UTF-8 문자 인코딩 지정 및 반응형 메타 태그(viewport 메타 태그) 지정을 해주는 편.
+		- 부트스트랩은 기본적으로 "모바일 우선"의 css 프레임워크이다. 따라서, 모바일 디바이스에 최적화 되어있다.
+		- 모바일 외의 디바이스는 css 미디어쿼리를 통해서 다양한 디바이스에 응대한다.
+		- 따라서, 웹사이트를 개발할 때 다양한 디바이스 환경에 응대하여 부트스트랩을 사용하고자 한다면 반응형 메타 태그 지정은 필수이다.
+		- viewport 지정을 안해주면 디바이스가 가로 사이즈를 인식하지 못해 pc처럼 렌더링하여 출력.
+		
+	2. viewport
+		- width=device-width : 디바이스의 화면 너비를 따르게끔 페이지 너비를 설정.
+		
+		- initial-scale=1 또는 1.0 (추천 및 권장)
+			브라우저가 웹페이지 로드 시 초기 "확대 또는 축소" 레벨을 설정.
+			즉, 보여지는 화면의 줌(zoom) 수준을 1배율로 설정한다는 의미. 이 값을 올리면 화면 줌이 커짐.
+			initial-scale은 한국말로 "초기 화면 배율 설정" 정도로 이해. 설정은 줌(zoom) 레벨을 설정한다는 의미
+			1.0은 100%와 같음.
+		
+		- user-scalable=no
+			no 또는 yes : 사용자가 브라우저의 확대/축소를 가능하게 할 것인지를 설정.
+			사용자가 크기 조정하는 것을 원하지 않을 때 사용.
+			
+		- minimum-scale=1.0
+			최소 사이즈를 1.0으로 처리.
+			최소 사이즈 설정은 사용자가 너무 극단적으로 화면을 축소시키는 것을 못하게 방지.
+			초기값과 최솟값 배율 설정을 같이할 수 있음.
+			
+		- maximum-scale=3.0
+			최대 사이즈를 3.0으로 처리.
+			최대 사이즈 설정은 사용자가 너무 극단적으로 화면을 확대시키는 것을 못하게 방지.
+			
+		- shrink-to-fit=no
+			임의 줄임을 방지.
+			사파리 특정 버전에서는 뷰포트 크기가 컨텐츠 내용 보다 작으면 내용을 임의적으로 줄여서 뷰포트 크기에 맞춰서 보여주곤 함.
+			이러한 임의 줄임을 방지하기 위해서 "no" 명령어를 사용.
+			
+	3. http-equiv="refresh"
+		새로고침하고 몇 초 후에 지정한 웹사이트로 이동.
+		<meta http-equiv="refresh" content="10; url=http://localhost:8024/member/memberList">
+
+	4. http-equiv="X-UA-Compatible"
+		렌더링 모드 설정.
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		
+		- 호환성 보기 모드
+			MS에서 만든 익스플로러 브라우저는 호환성 보기 모드가 있어서 올드한 IE에서는 컨텐츠가 정상적으로 출력되지 않을 수 있음.
+			사실 최신 브라우저 위주로만 쓰는 환경(또는 고려한다면)에서라면 이런 메타 태그는 쓸 필요가 없음.
+			구 브라우저들 때문에 필요한 태그 정도라고 생각하면 됨.
+			IE=9 또는 8 식으로 특정 버전을 명시할 수 있으나 편하게 IE=edge로 지정하여 항상 최신 표준 모드로 렌더링하도록 설정한다.
+			최근까지는 세미콜론(;) 붙여주고 뒤에 chrome=1을 추가해서 사용.
+			지금은 IE-edge만 작성해줘도 됨.
+ -->
