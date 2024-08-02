@@ -27,8 +27,9 @@
 			<a href="/sub" class="pl-3">sub</a>
 		</header>
 
-		<div class="container mt-5 mb-5">
-			<h2>Welcome</h2>		
+		<div th:fragment="tpl_main_title(val1, val2)" class="container mt-5 mb-5">
+			<h2 th:if="${val2 != ''}" th:text="${val1} + ' - ' + ${val2}" />		
+			<h2 th:unless="${val2 != ''}" th:text="${val1}" />		
 		</div>
 
 		<footer th:fragment="tpl_footer" class="bg-secondary text-center pt-5 pb-5 text-white">

@@ -3,9 +3,21 @@
 	<head th:replace="/tpl/tpl_fragments :: tpl_head(title='메인 페이지')" />
 	<body>
 	
+		<style>
+			ul{list-style: none; margin: 0; padding: 0}
+			li{display: inline}
+		</style>
+		<nav class="bg-dark py-2 px-2">
+			<ul>
+				<li class="pr-3"><a class="text-light" href="#">MAIN</a></li>
+				<li class="pr-3"><a class="text-light" href="#">SUB</a></li>
+				<li class="pr-3"><a class="text-light" href="#">Member CRUD</a></li>
+			</ul>
+		</nav>
+		
 		<header th:replace="/tpl/tpl_fragments :: tpl_header" />
 
-		<div class="container my-5 mb-5">
+		<div th:replace="/tpl/tpl_fragments :: tpl_main_title(val1='Main Page', val2='')" class="container my-5 mb-5">
 			<h3>Main Page</h3>
 		</div>
 		
