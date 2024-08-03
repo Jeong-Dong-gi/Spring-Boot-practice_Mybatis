@@ -3,6 +3,8 @@
 	<head th:replace="/tpl/tpl_fragments :: tpl_head(title='서브 페이지')" />
 	<body>
 	
+		<nav th:replace="/tpl/tpl_fragments_bs_topmenu :: tpl_nav(naviVal='sub')" />
+	
 		<header th:replace="/tpl/tpl_fragments :: tpl_header" />
 
 		<div th:replace="/tpl/tpl_fragments :: tpl_main_title(val1='Sub Page', val2='Event')" class="container my-5 mb-5">

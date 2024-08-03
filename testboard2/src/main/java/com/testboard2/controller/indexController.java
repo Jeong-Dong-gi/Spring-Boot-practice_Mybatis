@@ -24,4 +24,10 @@ public class indexController {
 		return "/tpl/tpl_sub";
 	}
 	
+	@GetMapping("/fragments_bs_topmenu")
+	public String indexBsTopmenu() {
+		
+		return "/tpl/tpl_fragments_bs_topmenu";
+	}
+	
 }

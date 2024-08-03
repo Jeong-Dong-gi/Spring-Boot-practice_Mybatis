@@ -3,6 +3,7 @@
 	<head th:replace="/tpl/tpl_fragments :: tpl_head(title='메인 페이지')" />
 	<body>
 	
+		<!--
 		<style>
 			ul{list-style: none; margin: 0; padding: 0}
 			li{display: inline}
@@ -14,6 +15,9 @@
 				<li class="pr-3"><a class="text-light" href="#">Member CRUD</a></li>
 			</ul>
 		</nav>
+		-->
+		
+		<nav th:replace="/tpl/tpl_fragments_bs_topmenu :: tpl_nav(naviVal='main')" />
 		
 		<header th:replace="/tpl/tpl_fragments :: tpl_header" />
 
