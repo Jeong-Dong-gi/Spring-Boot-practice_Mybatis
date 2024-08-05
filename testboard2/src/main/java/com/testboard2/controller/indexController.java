@@ -30,4 +30,9 @@ public class indexController {
 		return "/tpl/tpl_fragments_bs_topmenu";
 	}
 	
+	@GetMapping("/mainpage")
+	public String indexMainPage() {
+		
+		return "/tpl2/mainpage";
+	}
 }
