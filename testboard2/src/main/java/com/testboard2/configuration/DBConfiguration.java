@@ -71,8 +71,8 @@ public class DBConfiguration {
 	 *  이때, 데이터소스 객체를 넘겨 받아서 처리해도 되고, 아니면 setDataSource(dataSource()) 이렇게 해줘도 됨.
 	 *  
 	 *  기본적인 설정 3가지
-	 *  	setDataSource			:	빌드된 DataSource를 셋팅.
-	 *  	setMapperLocations		:	SQL 구문이 작성된 *Mapper.xml의 경로를 정확히 등록.
+	 *  	setDataSource		:	빌드된 DataSource를 셋팅.
+	 *  	setMapperLocations	:	SQL 구문이 작성된 *Mapper.xml의 경로를 정확히 등록.
 	 *  	setTypeAliasesPackage	:	인자로 Alias 대상 클래스가 위치한 패키지 경로.
 	 *  
 	 *  주의사항!
