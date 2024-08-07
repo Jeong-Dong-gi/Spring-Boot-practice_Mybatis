@@ -87,7 +87,7 @@ public class DBConfiguration {
 		/*
 		 * 메퍼에 대한 리소스는 어디에서 가져오는가?
 		 * 			- ApplicationContext 객체에서 가져올 수 있다.
-		 * 			- ApplicationContext는 쉽게 말해 플레임워크 컨테이너라고 생각하면 된다.
+		 * 			- ApplicationContext는 쉽게 말해 프레임워크 컨테이너라고 생각하면 된다.
 		 * 			- ApplicationContext는 애플리케이션이 시작해서 끝나는 그 순간까지 이 애플리케이션에서 필요한 모든 자원들을 모아놓고 관리.
 		 */
 		factoryBean.setTypeAliasesPackage("com.testboard2.dto");
